@@ -1,0 +1,31 @@
+﻿@model WebApplication1.Models.PersonModels.PersonListModel
+@{
+    ViewBag.Title = "Index";
+
+    var groups = from person in Model.People
+                 orderby person.Name
+                 group person by person.Name.Substring(0, 1).ToUpper() into g
+                 select new { FirstLetter = g.Key, PeopleInGroup = g };
+}
+<h1>@Model.Name</h1>
+<div>
+    @foreach (var group in groups)
+    {
+        <a href="#@group.FirstLetter">@group.FirstLetter</a>
+    }
+</div>
+
+
+@foreach (var group in groups)
+{
+    <h2 id="@group.FirstLetter">@group.FirstLetter</h2>
+    <ul>
+        @foreach (var person in group.PeopleInGroup)
+        {
+            <li>
+                @Html.ActionLink(person.Name, "Details", new { id = person.PersonId })
+            </li>
+        }
+    </ul>
+
+}

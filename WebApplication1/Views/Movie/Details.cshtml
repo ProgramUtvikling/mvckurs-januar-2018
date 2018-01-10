@@ -1,0 +1,31 @@
+﻿@model MovieDAL.Movie
+@using WebApplication1.Helpers
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>@Model.Title (@Model.ProductionYear)</h1>
+<p>@Model.OriginalTitle</p>
+<dl>
+    <dt>Sjanger</dt>
+    <dd>@Model.Genre.Name</dd>
+    <dt>Produkjsonsår</dt>
+    <dd>@Model.ProductionYear</dd>
+    <dt>Varighet</dt>
+    <dd>@Model.RunningLength</dd>
+    <dt>Regisører</dt>
+    <dd>@Html.PrettyJoin(Model.Directors)</dd>
+    <dt>Produsenter</dt>
+    <dd>@Html.PrettyJoin(Model.Producers)</dd>
+</dl>
+<p>@Model.Description</p>
+
+<h2>Skuespillere</h2>
+<ul>
+    @foreach (var person in Model.Actors)
+    {
+        <li>
+            @Html.ActionLink(person.Name, "Details", "Person", new { id = person.PersonId }, null)
+        </li>
+    }
+</ul>

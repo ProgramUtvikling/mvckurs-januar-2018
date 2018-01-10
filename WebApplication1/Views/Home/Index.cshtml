@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Forsiden";
+}
+
+<h1>Velkommen til Ingars Movie Database</h1>
+
+<ul>
+    <li>@Html.ActionLink("Alle filmer", "Index", "Movie")</li>
+    <li>@Html.ActionLink("Sjangre", "Genres", "Movie")</li>
+</ul>
+
+<ul>
+    <li>@Html.ActionLink("Skuespillere", "Actors", "Person")</li>
+    <li>@Html.ActionLink("Produsenter", "Producers", "Person")</li>
+    <li>@Html.ActionLink("Regisører", "Directors", "Person")</li>
+</ul>
+

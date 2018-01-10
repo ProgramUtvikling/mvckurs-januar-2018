@@ -1,0 +1,24 @@
+﻿@model MovieDAL.Person
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>@Model.Name</h1>
+
+@MovieList(Model.ActedMovies, "Spilt i")
+@MovieList(Model.ProducedMovies, "Produsert")
+@MovieList(Model.DirectedMovies, "Regisert")
+
+
+@helper MovieList(IEnumerable<MovieDAL.Movie> movies, string title)
+{
+    <h2>@title (fra helper)</h2>
+    <ul>
+        @foreach (var movie in movies)
+        {
+            <li>
+                @Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)
+            </li>
+        }
+    </ul>
+}

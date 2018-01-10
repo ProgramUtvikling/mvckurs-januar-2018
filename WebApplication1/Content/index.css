@@ -1,0 +1,5 @@
+﻿body {
+    background: linear-gradient(180deg, lightblue 0%, transparent 100%) no-repeat;
+    background-size: 100% 100px;
+    font-family: sans-serif;
+}
