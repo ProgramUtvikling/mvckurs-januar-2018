@@ -12,11 +12,12 @@
 
 @helper MovieList(IEnumerable<MovieDAL.Movie> movies, string title)
 {
-    <h2>@title (fra helper)</h2>
+    <h2>@title</h2>
     <ul>
         @foreach (var movie in movies)
         {
             <li>
+                @Cover.Small(movie)
                 @Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)
             </li>
         }

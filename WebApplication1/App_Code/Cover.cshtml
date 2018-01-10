@@ -1,0 +1,16 @@
+﻿
+@helper Image(MovieDAL.Movie movie, string format)
+{
+    var url = new System.Web.Mvc.UrlHelper(Context.Request.RequestContext);
+    <img src="@url.Action("CreateImage", "Image", new { format, id=movie.MovieId })" />
+}
+
+@helper Small(MovieDAL.Movie movie)
+{
+    @Image(movie, "small")
+}
+
+@helper Medium(MovieDAL.Movie movie)
+{
+    @Image(movie, "medium")
+}

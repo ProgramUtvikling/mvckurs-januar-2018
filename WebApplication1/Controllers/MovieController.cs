@@ -1,38 +1,26 @@
 ﻿using MovieDAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    public class MovieController : Controller
+    public class MovieController : ImdbControllerBase
     {
-        private readonly ImdbContext _db;
-
-        public MovieController()
+        public async Task<ViewResult> Index()
         {
-            _db = new ImdbContext();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            _db.Dispose();
-
-            base.Dispose(disposing);
-        }
-
-        public ViewResult Index()
-        {
-            ViewData.Model = _db.Movies;
+            ViewData.Model = await Db.Movies.ToListAsync();
 
             return View();
         }
 
-        public ActionResult Details(string id)
+        public async Task<ActionResult> Details(string id)
         {
-            var movie = _db.Movies.Find(id);
+            var movie = await Db.Movies.FindAsync(id);
             if(movie == null)
             {
                 return HttpNotFound();
@@ -41,17 +29,17 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public ViewResult Genres()
+        public async Task<ViewResult> Genres()
         {
-            ViewData.Model = _db.Genres;
+            ViewData.Model = await Db.Genres.ToListAsync();
 
             return View();
         }
 
         [Route("Movie/Genre/{genrename}")]
-        public ViewResult MoviesByGenre(string genrename)
+        public async Task<ViewResult> MoviesByGenre(string genrename)
         {
-            ViewData.Model = _db.Movies.Where(m => m.Genre.Name == genrename);
+            ViewData.Model = await Db.Movies.Where(m => m.Genre.Name == genrename).ToListAsync();
             ViewBag.Genre = genrename;
 
             return View("Index");

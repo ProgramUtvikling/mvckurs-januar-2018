@@ -11,19 +11,16 @@ namespace WebApplication1
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            var ns = new[] { "WebApplication1.Controllers" };
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapMvcAttributeRoutes();
-
-          
-         
-            routes.MapRoute("Movie cover image route",
-                "Image/{format}/{id}.jpg", new { Controller = "Image", Action = "CreateImage" });
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                , namespaces: ns
             );
         }
     }

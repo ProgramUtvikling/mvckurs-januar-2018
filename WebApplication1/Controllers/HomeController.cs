@@ -12,5 +12,11 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+        public ViewResult Demo()
+        {
+            //throw new Exception();
+            return View();
+        }
     }
 }

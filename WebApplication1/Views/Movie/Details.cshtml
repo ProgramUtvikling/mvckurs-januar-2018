@@ -1,5 +1,4 @@
-﻿@model MovieDAL.Movie
-@using WebApplication1.Helpers
+﻿@model Movie
 @{
     ViewBag.Title = "Details";
 }
@@ -19,6 +18,7 @@
     <dd>@Html.PrettyJoin(Model.Producers)</dd>
 </dl>
 <p>@Model.Description</p>
+@Cover.Medium(Model)
 
 <h2>Skuespillere</h2>
 <ul>
