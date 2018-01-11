@@ -1,0 +1,48 @@
+﻿@model WebApplication1.Areas.Admin.Models.MovieModels.MovieDeleteModel
+
+@{
+    ViewBag.Title = "Slett film";
+}
+
+<h2>Slett film</h2>
+<hr />
+
+<h4>Er du sikker på at du vil slette denne filmen?</h4>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MovieId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductionYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductionYear)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Slett" class="btn btn-default" /> |
+            @Html.ActionLink("Tilbake til listen", "Index")
+        </div>
+    }
+</div>

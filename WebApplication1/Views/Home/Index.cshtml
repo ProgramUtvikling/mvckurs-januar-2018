@@ -28,12 +28,18 @@
 
 <ul>
     <li>
-        @Html.ActionLink("Logg på", "LogOn", "Account")
+        @Html.Action("LoginStatus", "Account")
     </li>
 </ul>
 
 <ul>
     <li>
         @Html.ActionLink("Administrer filmer", "Index", "Movie", new { area = "Admin" }, null)
+    </li>
+</ul>
+
+<ul>
+    <li>
+        @Html.ActionLink("Demo", "Demo", "Home")
     </li>
 </ul>

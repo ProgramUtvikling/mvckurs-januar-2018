@@ -1,4 +1,4 @@
-﻿@model MovieDAL.Person
+﻿@model Person
 @{
     ViewBag.Title = "Details";
 }
@@ -10,7 +10,7 @@
 @MovieList(Model.DirectedMovies, "Regisert")
 
 
-@helper MovieList(IEnumerable<MovieDAL.Movie> movies, string title)
+@helper MovieList(IEnumerable<Movie> movies, string title)
 {
     <h2>@title</h2>
     <ul>

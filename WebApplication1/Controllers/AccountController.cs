@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using WebApplication1.Models.AccountModels;
 
 namespace WebApplication1.Controllers
 {
@@ -17,20 +18,43 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult LogOn(string username, string password, string returnUrl)
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
-            if(username == "arjan" && password == "pass")
+            if (ModelState.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(username, false);
-
-                if (string.IsNullOrWhiteSpace(returnUrl))
+                if (model.Username == "arjan" && model.Password == "pass")
                 {
-                    return View("LogOnSucceeded");
+                    FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
+
+                    if (string.IsNullOrWhiteSpace(returnUrl))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    return Redirect(returnUrl);
                 }
-                return Redirect(returnUrl);
+                ModelState.AddModelError("", "Ugylding brukernavn/passord");
             }
 
             return View();
+        }
+
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [ChildActionOnly]
+        public ActionResult LoginStatus()
+        {
+            if (Request.IsAuthenticated)
+            {
+                ViewData.Model = User.Identity.Name;
+                return PartialView("IsLoggedIn");
+            }
+
+            return PartialView("IsNotLoggedIn");
         }
     }
 }

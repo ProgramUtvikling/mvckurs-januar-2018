@@ -1,0 +1,18 @@
+﻿@model WebApplication1.Models.HomeModels.DemoModel
+
+@{
+    ViewBag.Title = "Demo";
+}
+
+<h1>Demo</h1>
+
+<form method="post">
+    @Html.LabelFor(m => m.Overskrift)
+    @Html.EditorFor(m => m.Overskrift)
+    <br />
+    @Html.LabelFor(m => m.Innhold)
+    @Html.EditorFor(m => m.Innhold)
+    <br />
+    <button>Send inn</button>
+</form>
+

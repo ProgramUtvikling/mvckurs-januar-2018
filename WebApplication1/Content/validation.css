@@ -1,0 +1,18 @@
+﻿/* css */
+
+.field-validaton-valid { display: none; }
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: thin solid red;
+    background-color: hsl(0, 100%, 90%);
+}
+
+.validation-summary-valid { display: none; }
+
+.validation-summary-errors {
+    color: red;
+}

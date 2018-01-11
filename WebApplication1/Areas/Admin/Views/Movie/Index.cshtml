@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebApplication1.Areas.Admin.Models.MovieModels.MovieIndexModel>
+
+@{
+    ViewBag.Title = "Administrer filmer";
+}
+
+<h2>Administrer filmer</h2>
+<hr />
+
+
+<p>
+    @Html.ActionLink("Registrer ny", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RunningLength)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RunningLength)
+        </td>
+        <td>
+            @Html.ActionLink("Endre", "Edit", new { id=item.MovieId }) |
+            @Html.ActionLink("Se detaljer", "Details", new { id=item.MovieId, area="" }) |
+            @Html.ActionLink("Slett", "Delete", new { id=item.MovieId })
+        </td>
+    </tr>
+}
+
+</table>

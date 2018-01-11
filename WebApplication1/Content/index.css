@@ -3,3 +3,15 @@
     background-size: 100% 100px;
     font-family: sans-serif;
 }
+
+li{
+    border: 5px solid black;
+}
+
+li+li {
+    border-top: none;
+}
+
+li:nth-child(n + 2){
+    background-color: yellow;
+}

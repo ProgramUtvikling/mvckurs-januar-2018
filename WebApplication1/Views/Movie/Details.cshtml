@@ -11,7 +11,7 @@
     <dt>Produkjsonsår</dt>
     <dd>@Model.ProductionYear</dd>
     <dt>Varighet</dt>
-    <dd>@Model.RunningLength</dd>
+    <dd>@Html.DisplayFor(model => model.RunningLength, "Duration")</dd>
     <dt>Regisører</dt>
     <dd>@Html.PrettyJoin(Model.Directors)</dd>
     <dt>Produsenter</dt>
