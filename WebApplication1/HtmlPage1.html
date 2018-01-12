@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Dette er HTMLPage1.html</h1>
+
+    <button id="minKnapp">Hent filmer</button>
+
+    <table>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Tittel</td>
+            </tr>
+        </thead> 
+        <tbody data-bind="foreach: movies">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="text: title"></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <script src="scripts/knockout-3.4.2.debug.js"></script>
+    <script>
+
+        var btn = document.getElementById("minKnapp");
+        btn.addEventListener("click", function () {
+            fetch("/imdbapi/movies?fmt=json")
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (movies) {
+                    ko.applyBindings({ movies: movies });
+                });
+        });
+
+
+    </script>
+</body>
+</html>

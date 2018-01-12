@@ -5,13 +5,10 @@
 }
 
 li{
-    border: 5px solid black;
+    border: thin solid gray;
 }
 
 li+li {
     border-top: none;
 }
 
-li:nth-child(n + 2){
-    background-color: yellow;
-}
